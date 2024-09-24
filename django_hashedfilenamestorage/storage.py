@@ -4,7 +4,7 @@ import os
 
 from django.core.files import File
 from django.core.files.storage import FileSystemStorage
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.core.exceptions import ImproperlyConfigured
 
 
@@ -57,7 +57,7 @@ def HashedFilenameMetaStorage(storage_class):
             name = self._save(name, content)
 
             # Store filenames with forward slashes, even on Windows
-            return force_text(name.replace('\\', '/'))
+            return force_str(name.replace('\\', '/'))
 
         def _save(self, name, content, *args, **kwargs):
             name = self._get_content_name(name=name, content=content)
